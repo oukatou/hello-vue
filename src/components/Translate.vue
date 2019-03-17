@@ -33,16 +33,19 @@ export default {
     },
     methods:{
         formSubmit(e){
+          let self = this;
           this.translatedText='loading'
-          this.$axios('https://translate.yandex.net/api/v1.5/tr.json/translate',{
+          this.qa.translate({
               params:{
                 key: 'trnsl.1.1.20180418T075147Z.a3956cb732de90e5.23be3b0c84e4e9f04760fe4a1b76b68ddb432c05',
                 text: this.translateText,
                 lang: this.language
+              },
+              success(data){
+                self.translatedText=data.text[0]
               }
             }
-          ).then(res=>this.translatedText=res.data.text[0])
-           .catch(err=>console.log(err))
+          )
         }
     }
 }

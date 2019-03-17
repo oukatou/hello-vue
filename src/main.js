@@ -5,9 +5,8 @@ import App from './App'
 import router from './router'
 import store from './store'
 import './element'
-import Axios from 'axios'
-Vue.prototype.$axios = Axios
-//Axios.defaults.baseURL='baidu'
+import qa from './assets/js/qa'
+Vue.prototype.qa = qa(['api/v2/movie/top250','https://translate.yandex.net/api/v1.5/tr.json/translate'])
 
 
 Vue.config.productionTip = false
