@@ -22,11 +22,10 @@ export default {
     }
   },
   created() {
-    let self=this;
-    this.qa.top250({
+    this.qa.v(this).top250({
           params: {count:10},
           success(data){
-            self.files = data.subjects
+            this.files = data.subjects
           }
         }
     )

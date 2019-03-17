@@ -1,15 +1,31 @@
 import Axios from 'axios'
 export default function(arr=[]){
     class _iqa{
-        sendMsg(url="",name,{type='get', params={}, success=function(){}}={}){
-            let paramsurl=_iqa.paramsToUrl(params)
+        constructor(){
+            this._vueob = {};
+            this.status = 0;
+        }
+        sendMsg(url="",{type='get', params={}, isblock=true, success=function(){}}={}){
+            let paramsurl=_iqa.paramsToUrl(params);
+            let self=this;
             let state = {
                 get:function(){
-                    Axios.get(url+paramsurl).then(res=> success(res.data))
-                                  .catch(error=>console.log(error)) 
+                    Axios.get(url+paramsurl).then(res=> {self.status = 0; success.call(self._vueob,res.data)})
+                                            .catch(error=>console.log(error)) 
                 }
             };
-            state[type]();
+            if(isblock){
+                if(this.status == 0){
+                    this.status = 1
+                    state[type]();
+                }
+            }else{
+                state[type]()
+            }
+        }
+        v(vueob){
+            this._vueob=vueob;
+            return this;
         }
         static getName(url){
             let _arr = url.split('/');
@@ -28,7 +44,7 @@ export default function(arr=[]){
     for(let _url of arr){
         let _name = _iqa.getName(_url)
         _iqaob[_name]=function(ob){
-            _iqaob.sendMsg(_url,_name,ob)
+            _iqaob.sendMsg(_url,ob)
         }
     }
     return _iqaob;
