@@ -22,12 +22,14 @@ export default {
     }
   },
   created() {
-    this.$axios('api/v2/movie/top250',{
-          params: {count:10}
+    let self=this;
+    this.qa.top250({
+          params: {count:10},
+          success(data){
+            self.files = data.subjects
+          }
         }
-    ).then(res=> this.files = res.data.subjects)
-        .catch(error=>console.log(error));
-
+    )
   },
   methods:{
   }
