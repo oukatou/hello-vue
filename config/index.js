@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
      '/api': {
-      target: 'http://api.douban.com/',//设置你调用的接口域名和端口号 别忘了加http
+      target: 'https://douban.uieee.com/',//设置你调用的接口域名和端口号 别忘了加http
       changeOrigin: true,
       pathRewrite: {
         '^/api': '/'
