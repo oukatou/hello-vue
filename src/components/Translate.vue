@@ -41,11 +41,24 @@ export default {
                 lang: this.language
               },
               success(data){
-                this.translatedText=data.text[0]
+                this.translatedText=data.text[0]``
               },
               isblock: false
             }
-          )
+          )/*
+          if(localStorage.getItem('p')){
+            let val = JSON.parse(localStorage.gexxtItem('p')) 
+            if((Date.now()-val.date)<2000){
+              console.log(val)
+            }else{
+              localStorage.removeItem('p')
+              this.$data.date=Date.now()
+            localStorage.setItem('p',JSON.stringify(this.$data))
+            }
+          }else{
+            this.$data.date=Date.now()
+            localStorage.setItem('p',JSON.stringify(this.$data))
+          }*/
         }
     }
 }

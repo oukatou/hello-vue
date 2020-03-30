@@ -42,6 +42,5 @@ export default {
 
 
 </script>
-<style scoped>
-@import "../assets/css/split.css";
+<style scoped src='../assets/css/split.css'>
 </style>

@@ -209,7 +209,7 @@ export default {
                 window.open('https://www.baidu.com/s?wd=' + this.content);
                 this.content = '';
             }
-            jsonp('bd/su?wd=' + this.content,null,(err)=>{
+            jsonp('bd/su?wd=' + this.content + '&callback=window.haha',null,(err)=>{
                 if(err){console.log(err)}
             })
             this.now=-1
